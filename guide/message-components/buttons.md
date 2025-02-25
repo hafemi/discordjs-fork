@@ -93,7 +93,7 @@ Restart your bot and then send the command to a channel your bot has access to. 
 
 ## Button styles
 
-You'll notice in the above example that two different styles of buttons have been used, the grey Secondary style and the red Danger style. These were chosen specifically to support good UI/UX principles. In total, there are five button styles that can be used as appropriate to the action of the button:
+You'll notice in the above example that two different styles of buttons have been used, the grey Secondary style and the red Danger style. These were chosen specifically to support good UI/UX principles. In total, there are six button styles that can be used as appropriate to the action of the button:
 
 <DiscordMessages>
 	<DiscordMessage profile="bot">
@@ -107,6 +107,7 @@ You'll notice in the above example that two different styles of buttons have bee
 				<DiscordButton type="success">Success</DiscordButton>
 				<DiscordButton type="danger">Danger</DiscordButton>
 				<DiscordButton type="link" url="https://discord.js.org">Link</DiscordButton>
+				<DiscordButton type="premium">Product</DiscordButton>
 			</DiscordButtons>
 		</template>
 	</DiscordMessage>
@@ -117,6 +118,7 @@ You'll notice in the above example that two different styles of buttons have bee
 - `Success` style buttons are green. Similar to the Primary button, these are a good choice for "positive" confirmation actions.
 - `Danger` style buttons are red. Where the action being confirmed is "destructive", such a ban or delete, using a red button helps alert the user to the risk of the action.
 - `Link` style buttons are also grey, but are tagged with the "external link" symbol. These buttons will open the provided link in the browser without sending an interaction to the bot.
+- `Premium` style buttons are also blue, but are tagged with a small market symbol. These are used to open the details tab from a specific product.
 
 ## Link buttons
 
@@ -165,6 +167,16 @@ const button = new ButtonBuilder()
 	.setLabel('Primary')
 	.setStyle(ButtonStyle.Primary)
 	.setEmoji('123456789012345678');
+```
+
+## Premium buttons
+
+Premium buttons _require_ a [SKUId](https://discord.com/developers/docs/monetization/managing-skus) and _cannot_ be customized with a label or custom id and _do not_ send an interaction event when clicked.
+
+```js {5}
+const button = new ButtonBuilder()
+	.setStyle(ButtonStyle.Premium)
+	.setSKUId('123456789')
 ```
 
 #### Next steps
